@@ -32,11 +32,13 @@
 
 > 📌 它会把插件文件复制到 `C:\Users\你的用户名\.config\opencode\plugins\`
 
-### 第三步：重启 OpenCode
+### 第三步：打开配置面板
 
-关掉 OpenCode，重新打开。插件会自动加载。
+1. 找到安装目录里的 `start-gui.bat`（默认在 `C:\Users\你的用户名\.config\opencode\plugins\start-gui.bat`）
+2. **双击运行**
+3. 浏览器会自动打开配置页面
 
-**✅ 安装完成！** 但现在插件还没开，下面教你怎么配置。
+**✅ 安装完成！** 接下来在配置面板里填写 API 信息就能用了。
 
 ---
 

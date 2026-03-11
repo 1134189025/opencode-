@@ -636,7 +636,9 @@ function showModelSelector(modelIds) {
 }
 
 // ============= Save Logic =============
-async function saveConfig() {
+// manual=true 表示用户主动点击保存按钮，离线模式下才触发文件下载
+// manual=false 表示自动保存（开关切换、选模型等），离线模式下只存 localStorage
+async function saveConfig(manual = false) {
     const config = getConfigFromForm()
 
     if (config.enabled && !config.apiKey) {
@@ -648,8 +650,8 @@ async function saveConfig() {
 
     if (serverSaved) {
         showToast("✅ 设置已保存到插件配置文件", "success")
-    } else {
-        // 离线模式：下载配置文件让用户手动放到插件目录
+    } else if (manual) {
+        // 离线模式 + 手动保存：下载配置文件让用户手动放到插件目录
         downloadConfig(config)
         showToast("✅ 已保存到浏览器，配置文件已下载（请放到插件目录）", "info")
     }
@@ -672,7 +674,7 @@ elements.toggleKey.addEventListener("click", () => {
     }
 })
 
-elements.saveBtn.addEventListener("click", saveConfig)
+elements.saveBtn.addEventListener("click", () => saveConfig(true))
 
 elements.resetBtn.addEventListener("click", async () => {
     if (confirm("确认重置为默认设置？")) {
